@@ -40,7 +40,7 @@ class BaseOptions():
 
         # training hyperparameters
         parser.add_argument('--phase', type=str, default='train')
-        parser.add_argument('--batch_size', type=int, default=32)
+        parser.add_argument('--batch_size', type=int, default=10)#源代码为32
         parser.add_argument('--epochs', type=int, default=38)
         parser.add_argument('--resume', type=str, default='')
 

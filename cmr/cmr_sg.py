@@ -24,12 +24,18 @@ class EncodeStage1(nn.Module):
         self.layer4 = backbone.layer4
 
     def forward(self, x):
+        # x:18*3*224*224
         x0 = self.relu(self.bn1(self.conv1(x)))
+        # x0:18*64*112*112
         x = self.maxpool(x0)
         x1 = self.layer1(x)
+        # x1:18*64*56*56
         x2 = self.layer2(x1)
+        # x2: 18*128*28*28
         x3 = self.layer3(x2)
+        # x3: 18*256*14*14
         x4 = self.layer4(x3)
+        # x4:18*512*7*7
 
         return x0, x4, x3, x2, x1
 
@@ -49,13 +55,18 @@ class EncodeStage2(nn.Module):
         self.fc = backbone.fc
 
     def forward(self, x):
+        # x:18*(64+1)*112*112
         x0 = self.reduce(x)
+        # x0:18*64*112*112
         x = self.maxpool(x0)
         x1 = self.layer1(x)
+        # x1:18*64*56*56
         x2 = self.layer2(x1)
+        # x2:18*128*28*28
         x3 = self.layer3(x2)
+        # x3:18*256*14*14
         x4 = self.layer4(x3)
-
+        # x4:18*512*7*7
         return x0, x4, x3, x2, x1
 
 
@@ -154,7 +165,8 @@ class CMR_SG(nn.Module):
             basenet = resnet50(pretrained=pretrained)
             latent_channel = (1000, 2048, 1024, 512, 256)
         elif '18' in backbone:
-            basenet = resnet18(pretrained=pretrained)
+            # 增加CBAM注意力机制
+            basenet = resnet18(pretrained=pretrained, att_type='CBAM')
             latent_channel = (1000, 512, 256, 128, 64)
         else:
             raise Exception("Not supported", backbone)

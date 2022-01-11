@@ -1,4 +1,4 @@
-phase='eval'
+phase='eval_withgt_freihand'
 exp_name='cmr_sg'
 backbone='ResNet18'
 dataset='FreiHAND'

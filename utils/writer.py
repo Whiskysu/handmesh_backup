@@ -3,7 +3,9 @@ import time
 import torch
 import json
 from glob import glob
-
+# 完善checkpoint保存时候的命名
+from options.base_options import BaseOptions
+args = BaseOptions().parse()
 
 class Writer:
     def __init__(self, args=None):
@@ -39,11 +41,11 @@ class Writer:
 
     def save_checkpoint(self, model, optimizer, scheduler, epoch, best=False, last=False):
         if best:
-            save_path = os.path.join(self.args.checkpoints_dir, 'checkpoint_best.pt')
+            save_path = os.path.join(self.args.checkpoints_dir, f'checkpoint_{args.backbone}_{args.model}_best.pt')
         elif last:
-            save_path = os.path.join(self.args.checkpoints_dir, 'checkpoint_last.pt')
+            save_path = os.path.join(self.args.checkpoints_dir, f'checkpoint_{args.backbone}_{args.model}_last.pt')
         else:
-            save_path = os.path.join(self.args.checkpoints_dir, 'checkpoint_{:03d}.pt'.format(epoch))
+            save_path = os.path.join(self.args.checkpoints_dir, f'checkpoint_{args.backbone}_{args.model}_{epoch}.pt')
         torch.save(
             {
                 'epoch': epoch,

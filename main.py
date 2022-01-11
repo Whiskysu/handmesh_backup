@@ -118,6 +118,18 @@ if __name__ == '__main__':
         eval_loader = DataLoader(eval_dataset, batch_size=1, shuffle=False, pin_memory=True, num_workers=0)
         runner.set_eval_loader(eval_loader)
         runner.evaluation_withgt()
+
+    #     #自个添加的
+    # elif args.phase == 'eval_withgt_freihand':
+    #     # dataset
+    #     train_dataset = FreiHAND(data_fp, 'training', args, tmp['face'], writer=writer,
+    #                              down_sample_list=down_transform_list, ms=args.ms_mesh)
+    #     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, pin_memory=False,
+    #                               num_workers=16, drop_last=True)
+    #     runner.set_eval_loader(train_loader)
+    #     runner.evaluation_withgt()
+    #     #自个添加的
+
     elif args.phase == 'demo':
         runner.set_demo(args)
         runner.demo()

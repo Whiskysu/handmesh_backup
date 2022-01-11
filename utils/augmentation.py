@@ -5,15 +5,15 @@ import cv2
 
 
 class Compose(object):
-    """Composes several augmentations together.
-    Args:
-        transforms (List[Transform]): list of transforms to compose.
-    Example:
-        >>> augmentations.Compose([
-        >>>     transforms.CenterCrop(10),
-        >>>     transforms.ToTensor(),
-        >>> ])
-    """
+    # """Composes several augmentations together.
+    # Args:
+    #     transforms (List[Transform]): list of transforms to compose.
+    # Example:
+    #     >>> augmentations.Compose([
+    #     >>>     transforms.CenterCrop(10),
+    #     >>>     transforms.ToTensor(),
+    #     >>> ])
+    # """
 
     def __init__(self, transforms):
         self.transforms = transforms
@@ -249,7 +249,7 @@ def get_m1to1_gaussian_rand(scale):
 
 
 if __name__ == '__main__':
-    img = cv2.imread('../data/FreiHAND/data/evaluation/rgb/00000001.jpg')
+    img = cv2.imread('../data/FreiHAND/evaluation/rgb/00000001.jpg')
     img = crop_roi(img, (112-50*1.3, 112-50*1.3, 112+50*1.3, 112+50*1.3), 224)
     img, mapping = rotate(img, 30)
     cv2.imshow('test', img)

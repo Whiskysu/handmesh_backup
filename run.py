@@ -77,12 +77,15 @@ class Runner(object):
                 't_duration': t_duration
             }
             self.writer.print_info(info)
-            if self.args.dataset=='Human36M':
+            # if self.args.dataset=='Human36M':
+            # TODO: FreiHAND没有写入best_error
+            if self.args.dataset == 'Human3.6M':
                 test_error = self.evaluation_withgt()
                 if test_error < best_error:
                     best_error = test_error
                     self.writer.save_checkpoint(self.model, self.optimizer, self.scheduler, self.epoch, best=True)
-            self.writer.save_checkpoint(self.model, self.optimizer, self.scheduler, self.epoch, last=True)
+            # self.writer.save_checkpoint(self.model, self.optimizer, self.scheduler, self.epoch, last=True)
+            self.writer.save_checkpoint(self.model, self.optimizer, self.scheduler, self.epoch)#保存epoch命名
         if self.args.dataset=='FreiHAND' and self.eval_loader is not None:
             self.evaluation()
 

@@ -69,6 +69,8 @@ def vertex_quadrics(mesh):
         verts = np.hstack((mesh.v[vert_idxs], np.array([1, 1,
                                                         1]).reshape(-1, 1)))
         u, s, v = np.linalg.svd(verts)
+        # s是对矩阵a的奇异值分解,
+        # https://blog.csdn.net/rainpasttime/article/details/79831533
         eq = v[-1, :].reshape(-1, 1)
         eq = eq / (np.linalg.norm(eq[0:3]))
 

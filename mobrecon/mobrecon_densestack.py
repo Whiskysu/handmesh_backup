@@ -55,7 +55,7 @@ class MobRecon(nn.Module):
         self.decoder3d = DWReg2DDecode3D(self.input_channel * 2, args.out_channels, spiral_indices, up_transform, self.uv_channel)
 
     def forward(self, x):
-        latent, pred2d_pt = self.backbone(x)
+        latent, pred2d_pt = self.backboqne(x)
         pred3d = self.decoder3d(pred2d_pt, latent)
 
         return {'mesh_pred': pred3d,

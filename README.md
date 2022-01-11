@@ -139,3 +139,4 @@ We re-produce the following results after code re-organization.
 
 ## Acknowledgement
 Our implementation of SpiralConv is based on [spiralnet_plus](https://github.com/sw-gong/spiralnet_plus?utm_source=catalyzex.com).
+# HandMeshV2-backup

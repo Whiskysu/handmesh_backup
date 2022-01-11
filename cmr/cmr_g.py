@@ -124,7 +124,8 @@ class CMR_G(nn.Module):
             basenet = resnet50(pretrained=pretrained)
             latent_channel = (1000, 2048, 1024, 512, 256)
         elif '18' in backbone:
-            basenet = resnet18(pretrained=pretrained)
+            # 修改加入CBAM注意力机制
+            basenet = resnet18(pretrained=pretrained, att_type='CBAM')
             latent_channel = (1000, 512, 256, 128, 64)
         else:
             raise Exception("Not supported", backbone)
